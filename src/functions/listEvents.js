@@ -20,12 +20,31 @@ export default function createUser(event, context, callback) {
       console.error('Unable to scan events table. Error JSON:', JSON.stringify(err, null, 2));
     } else {
       console.log(data);
+      const tasks = data.Items
+        .sort((a, b) => {
+          if (a.time === b.time) {
+            return 0;
+          }
+          return a.time < b.time ? -1 : 1;
+        })
+        .map((item, i) => {
+          let text = `${item.name} at ${item.time}`;
+          if (i === data.Items.length - 1) {
+            text += '.';
+          } else if (i === data.Items.length - 2) {
+            text += '<break time="1s"/> and ';
+          } else {
+            text += '<break time="1s"/>, ';
+          }
+          return text;
+        })
+        .join();
       const response = {
         version: '1.0',
         response: {
           outputSpeech: {
             type: 'SSML',
-            ssml: `<speak><prosody rate="slow">Your tasks for this morning are </prosody><break time="1s"/>${data.Items.map(item => item.name + ' at ' + item.time).join('<break time="1s"/> and ')}</speak>`
+            ssml: `<speak><prosody rate="slow">Your tasks for this morning are </prosody><break time="1s"/>${tasks}</speak>`
           },
           shouldEndSession: false,
           card: {
