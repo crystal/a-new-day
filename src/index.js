@@ -2,6 +2,8 @@ import createEvent from './functions/createEvent';
 import goodbye from './functions/goodbye';
 import welcome from './functions/welcome';
 import unknown from './functions/unknown';
+import listEvents from './functions/listEvents';
+import deleteEvent from './functions/deleteEvent';
 
 export function handler(ev, context, callback) { // eslint-disable-line import/prefer-default-export
   console.log(JSON.stringify(ev, null, 2));
@@ -40,7 +42,7 @@ export function handler(ev, context, callback) { // eslint-disable-line import/p
     }
     case 'SessionEndedRequest': {
       console.log('session ended');
-      context.succeed();
+      goodbye(ev, context, callback);
       break;
     }
     default: {

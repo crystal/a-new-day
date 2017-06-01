@@ -4,10 +4,10 @@
   "description": "Meet New Day: An Alexa skill which allows users to input their typical morning into our app.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "build": "babel src -d lib",
     "watch": "babel src -d lib -w",
-    "deploy": "serverless deploy"
+    "deploy": "serverless deploy",
+    "start": "nodemon ./lib/server"
   },
   "author": "",
   "license": "ISC",
@@ -20,17 +20,23 @@
   },
   "homepage": "https://github.com/crystal/a-new-day#readme",
   "dependencies": {
-    "aws-sdk": "^2.57.0",
+    "aws-sdk": "^2.59.0",
+    "bluebird": "^3.5.0",
+    "request": "^2.81.0",
+    "request-promise": "^4.2.1",
     "uuid": "^3.0.1"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
     "babel-eslint": "^7.2.3",
     "babel-preset-es2015": "^6.24.1",
+    "body-parser": "^1.17.2",
     "eslint": "^3.19.0",
     "eslint-config-airbnb": "^15.0.1",
     "eslint-plugin-import": "^2.3.0",
     "eslint-plugin-jsx-a11y": "^5.0.3",
-    "eslint-plugin-react": "^7.0.1"
+    "eslint-plugin-react": "^7.0.1",
+    "express": "^4.15.3",
+    "nodemon": "^1.11.0"
   }
 }

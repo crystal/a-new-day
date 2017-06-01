@@ -2,31 +2,32 @@ import AWS from 'aws-sdk';
 
 AWS.config.update({
   region: 'us-east-1'
+  // endpoint: 'http://localhost:8000'
 });
 
-export default function listUsers(event, context, callback) {
+export default function createUser(event, context, callback) {
   const docClient = new AWS.DynamoDB.DocumentClient();
 
-  const table = 'Users';
+  const table = 'Events';
 
   const params = {
     TableName: table
   };
 
-  console.log('Scanning users table...');
+  console.log('Scanning events table...');
   docClient.scan(params, (err, data) => {
     if (err) {
-      console.error('Unable to scan table. Error JSON:', JSON.stringify(err, null, 2));
+      console.error('Unable to scan events table. Error JSON:', JSON.stringify(err, null, 2));
     } else {
       console.log(data);
       const response = {
         version: '1.0',
         response: {
           outputSpeech: {
-            type: 'PlainText',
-            text: `You current users are ${data.Items.map(item => item.firstName).join(' and ')}`
+            type: 'SSML',
+            ssml: `<speak><prosody rate="slow">Your tasks for this morning are </prosody><break time="1s"/>${data.Items.map(item => item.name + ' at ' + item.time).join('<break time="1s"/> and ')}</speak>`
           },
-          shouldEndSession: true,
+          shouldEndSession: false,
           card: {
             type: 'Simple',
             title: 'Test',
@@ -40,7 +41,6 @@ export default function listUsers(event, context, callback) {
           }
         }
       };
-      console.log(response, JSON.stringify(response, null, 2));
       callback(null, response);
     }
   });

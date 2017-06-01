@@ -1,0 +1,16 @@
+#!/bin/bash
+while true ; do
+  fswatch -0 $1 | \
+    rsync \
+      -r \
+      -a \
+      -v \
+      -e "ssh -i $2" \
+      --exclude ".git/" \
+      --exclude ".DS_Store" \
+      --exclude "node_modules/" \
+      --delete \
+      $1 \
+      ubuntu@$3:$4
+  sleep 5
+done

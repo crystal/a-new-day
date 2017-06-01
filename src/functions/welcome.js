@@ -9,8 +9,8 @@ export default function welcome(event, context, callback) {
     version: '1.0',
     response: {
       outputSpeech: {
-        type: 'PlainText',
-        text: 'Welcome to Morning Routine! You can start your routine or manage your routine. Which one can I help with?'
+        type: 'SSML',
+        ssml: '<speak>Welcome to Morning Routine! You can start your routine or manage your routine. Which one can I help with?</speak>'
       },
       shouldEndSession: false,
       card: {

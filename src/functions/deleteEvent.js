@@ -1,12 +1,10 @@
 import AWS from 'aws-sdk';
-import uuid from 'uuid';
 
 AWS.config.update({
   region: 'us-east-1'
-  // endpoint: 'http://localhost:8000'
 });
 
-export default function createUser(event, context, callback) {
+export default function deleteEvent(event, context, callback) {
   const docClient = new AWS.DynamoDB.DocumentClient();
 
   const table = 'Events';
@@ -14,23 +12,23 @@ export default function createUser(event, context, callback) {
   const params = {
     TableName: table,
     Item: {
-      id: uuid.v4(),
-      time: event.request.intent.slots.time.value,
-      name: event.request.intent.slots.name.value
+      id: event.request.intent.slots.id,
+      name: event.request.intent.slots.name
     }
   };
 
-  docClient.put(params, (err, data) => {
+  console.log('Deleting an item...');
+  docClient.delete(params.value, (err, data) => {
     if (err) {
-      console.error('Unable to add item. Error JSON:', JSON.stringify(err, null, 2));
+      console.error('Unable to delete task. Error JSON:', JSON.stringify(err, null, 2));
     } else {
-      console.log('Added item:', JSON.stringify(data, null, 2));
+      console.log('Deleted item:', JSON.stringify(data, null, 2));
       const response = {
         version: '1.0',
         response: {
           outputSpeech: {
             type: 'PlainText',
-            text: `Great! I've added ${params.Item.name} at ${params.Item.time}! What else?`
+            text: `Great! I've deleted ${params.Item.name}! What else?`
           },
           shouldEndSession: false,
           card: {
