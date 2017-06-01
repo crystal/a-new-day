@@ -34,6 +34,10 @@ export function handler(ev, context, callback) { // eslint-disable-line import/p
           manage(ev, context, callback);
           break;
         }
+        case 'StartIntent': {
+          play(ev, context, callback);
+          break;
+        }
         case 'AMAZON.PauseIntent': {
           goodbye(ev, context, callback);
           break;
