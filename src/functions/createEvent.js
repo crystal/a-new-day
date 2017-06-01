@@ -29,8 +29,8 @@ export default function createUser(event, context, callback) {
         version: '1.0',
         response: {
           outputSpeech: {
-            type: 'PlainText',
-            text: `Great! I've added ${params.Item.name} at ${params.Item.time}! What else?`
+            type: 'SSML',
+            ssml: `<speak>Great! I've added ${params.Item.name} at ${params.Item.time}! What else?</speak>`
           },
           shouldEndSession: false,
           card: {

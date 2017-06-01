@@ -9,8 +9,6 @@
     "deploy": "serverless deploy",
     "start": "nodemon ./lib/server"
   },
-  "author": "",
-  "license": "ISC",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/crystal/a-new-day.git"
