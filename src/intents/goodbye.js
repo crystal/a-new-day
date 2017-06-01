@@ -10,14 +10,19 @@ export default function goodbye(event, context, callback) {
     response: {
       outputSpeech: {
         type: 'PlainText',
-        text: 'Thanks for using Morning Routine!'
+        text: 'Thanks for using A New Day!'
       },
       shouldEndSession: true,
       card: {
         type: 'Simple',
         title: 'Test',
         content: 'Test'
-      }
+      },
+      directives: [
+        {
+          type: 'AudioPlayer.Stop'
+        }
+      ]
     }
   };
   callback(null, response);

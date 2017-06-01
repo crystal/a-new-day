@@ -18,6 +18,33 @@ export default function createUser(event, context, callback) {
   docClient.scan(params, (err, data) => {
     if (err) {
       console.error('Unable to scan events table. Error JSON:', JSON.stringify(err, null, 2));
+    } else if (!data.Items.length) {
+      const response = {
+        version: '1.0',
+        response: {
+          outputSpeech: {
+            type: 'SSML',
+            ssml: `
+              <speak>
+                You don't have any events added to your morning! To add events, say "add".
+              </speak>
+            `
+          },
+          shouldEndSession: false,
+          card: {
+            type: 'Simple',
+            title: 'Test',
+            content: 'Test'
+          },
+          reprompt: {
+            outputSpeech: {
+              type: 'PlainText',
+              text: 'Hello?'
+            }
+          }
+        }
+      };
+      callback(null, response);
     } else {
       console.log(data);
       const tasks = data.Items

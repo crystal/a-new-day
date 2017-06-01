@@ -1,9 +1,11 @@
-import createEvent from './functions/createEvent';
-import goodbye from './functions/goodbye';
-import welcome from './functions/welcome';
-import unknown from './functions/unknown';
-import listEvents from './functions/listEvents';
-import deleteEvent from './functions/deleteEvent';
+import createEvent from './intents/createEvent';
+import goodbye from './intents/goodbye';
+import welcome from './intents/welcome';
+import unknown from './intents/unknown';
+import listEvents from './intents/listEvents';
+import deleteEvent from './intents/deleteEvent';
+import manage from './intents/manage';
+import play from './intents/play';
 
 export function handler(ev, context, callback) { // eslint-disable-line import/prefer-default-export
   console.log(JSON.stringify(ev, null, 2));
@@ -26,6 +28,18 @@ export function handler(ev, context, callback) { // eslint-disable-line import/p
         }
         case 'ListEventsIntent': {
           listEvents(ev, context, callback);
+          break;
+        }
+        case 'ManageIntent': {
+          manage(ev, context, callback);
+          break;
+        }
+        case 'AMAZON.PauseIntent': {
+          goodbye(ev, context, callback);
+          break;
+        }
+        case 'AMAZON.ResumeIntent': {
+          play(ev, context, callback);
           break;
         }
         case 'AMAZON.StopIntent': {
