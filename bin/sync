@@ -12,5 +12,5 @@ while true ; do
       --delete \
       $1 \
       ubuntu@$3:$4
-  sleep 5
+  sleep 1
 done
