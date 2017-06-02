@@ -21,7 +21,7 @@ export default function play(event, context, callback) {
           audioItem: {
             stream: {
               token: 'abc',
-              url: 'https://feeds.soundcloud.com/stream/275202399-amazon-web-services-306355661-amazon-web-services.mp3',
+              url: 'https://s3.amazonaws.com/a-new-day/routine.mp3',
               offsetInMilliseconds: 0
             }
           }
