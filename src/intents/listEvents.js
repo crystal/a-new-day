@@ -71,7 +71,11 @@ export default function createUser(event, context, callback) {
         response: {
           outputSpeech: {
             type: 'SSML',
-            ssml: `<speak><prosody rate="slow">Your tasks for this morning are </prosody><break time="1s"/>${tasks}</speak>`
+            ssml: `
+              <speak>
+                Your tasks for this morning are <break time="1s"/>${tasks}
+              </speak>
+              `
           },
           shouldEndSession: false,
           card: {
@@ -82,7 +86,7 @@ export default function createUser(event, context, callback) {
           reprompt: {
             outputSpeech: {
               type: 'PlainText',
-              text: 'Hello?'
+              text: 'What would you like to do next? We can manage your list or start your routine. Say "Manage" or "Start".'
             }
           }
         }

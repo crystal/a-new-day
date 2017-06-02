@@ -16,8 +16,8 @@ export default function manage(event, context, callback) {
         type: 'SSML',
         ssml: `
           <speak>
-            To hear all events in your morning routine, say "list events".
-            To add an event, say "add".
+            To hear the tasks in your morning routine, simply say, "list".
+            If you'd like to add a task, just say "add".
           </speak>
         `
       },

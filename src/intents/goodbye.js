@@ -9,8 +9,12 @@ export default function goodbye(event, context, callback) {
     version: '1.0',
     response: {
       outputSpeech: {
-        type: 'PlainText',
-        text: 'Thanks for using A New Day!'
+        type: 'SSML',
+        ssml: `
+          <speak>
+            Thanks for using <phoneme alphabet="ipa" ph="ə">A</phoneme> New Day!
+          </speak>
+        `
       },
       shouldEndSession: true,
       card: {

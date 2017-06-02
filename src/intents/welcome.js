@@ -12,9 +12,9 @@ export default function welcome(event, context, callback) {
         type: 'SSML',
         ssml: `
           <speak>
-            Welcome to A New Day!
             <audio src="https://s3.amazonaws.com/a-new-day/welcome.mp3" />
-            I'll remind you about important events before you head out the door.
+            Welcome to <phoneme alphabet="ipa" ph="ə">A</phoneme> New Day!
+            I'll guide you through your morning, and remind you of your tasks along the way.
             To manage your routine, say "manage".
             To start your routine, say "start".
           </speak>
