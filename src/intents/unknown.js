@@ -9,8 +9,13 @@ export default function unknown(event, context, callback) {
     version: '1.0',
     response: {
       outputSpeech: {
-        type: 'PlainText',
-        text: 'I do not understand. Can you repeat that?'
+        type: 'SSML',
+        ssml: `
+          <speak>
+            <audio src="https://s3.amazonaws.com/a-new-day/error.mp3" />
+            I do not understand. Can you repeat that?
+          </speak>
+        `
       },
       shouldEndSession: false,
       card: {

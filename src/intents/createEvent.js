@@ -65,7 +65,7 @@ export default function createEvent(event, context, callback) {
     } else {
       console.log('Added item:', JSON.stringify(data, null, 2));
       const confirmations = [
-        'Yay',
+        'Perfect',
         'Great',
         'Sure thing'
       ];
@@ -80,7 +80,12 @@ export default function createEvent(event, context, callback) {
         response: {
           outputSpeech: {
             type: 'SSML',
-            ssml: `<speak>${confirmation}! I've added ${params.Item.name} at ${params.Item.time}! ${question}?</speak>`
+            ssml: `
+              <speak>
+                <audio src="https://s3.amazonaws.com/a-new-day/confirm.mp3" />
+                ${confirmation}! I've added ${params.Item.name} at ${params.Item.time}! ${question}?
+              </speak>
+            `
           },
           shouldEndSession: false,
           card: {

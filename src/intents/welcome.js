@@ -13,7 +13,7 @@ export default function welcome(event, context, callback) {
         ssml: `
           <speak>
             Welcome to A New Day!
-            <audio src="https://s3.amazonaws.com/a-new-day/wand.mp3" />
+            <audio src="https://s3.amazonaws.com/a-new-day/welcome.mp3" />
             I'll remind you about important events before you head out the door.
             To manage your routine, say "manage".
             To start your routine, say "start".

@@ -17,7 +17,7 @@ export default function manage(event, context, callback) {
         ssml: `
           <speak>
             To hear all events in your morning routine, say "list events".
-            To add an event, say "add". To delete an event say "delete".
+            To add an event, say "add".
           </speak>
         `
       },
