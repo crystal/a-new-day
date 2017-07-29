@@ -3,7 +3,7 @@ import AWS from 'aws-sdk';
 import uuid from 'uuid';
 
 AWS.config.update({
-  region: 'us-east-1'
+  region: 'eu-west-1'
   // endpoint: 'http://localhost:8000'
 });
 
